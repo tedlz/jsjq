@@ -1,4 +1,4 @@
-*JavaScript* 和 *jQuery* 效果 demo
+JavaScript 和 jQuery 效果 demo
 =====
 
 ## Demo:
