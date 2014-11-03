@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>一个方法实现全选反选与取消全选</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        //生成checkbox
+        window.onload = function(){
+            var num = 10;
+            var content = "";
+            for(var i = 0; i < num; i++){
+                content += '<input type="checkbox" name="cb[]" /><br/>';
+            }
+            content += '<input type="button" value="全选/反选" onclick="selectAll()" />&nbsp;<input type="button" value="取消全选" onclick="selectAll(1)" />';
+            // $("hehe").innerHTML = content;
+            $("#hehe").html(content);
+        }
+
+        //jQuery一样的使用方法
+        // var $ = function(id){
+        //     return document.getElementById(id);
+        // }
+
+        //全选、反选与取消全选
+        // function selectAll(flag){
+        //     var cbArr = document.getElementsByName("cb[]");
+        //     for(var i = 0; i < cbArr.length; i++){
+        //         var cb = cbArr[i];
+        //         if(flag != undefined || cb.checked){
+        //             cb.checked = false;
+        //         }else{
+        //             cb.checked = true;
+        //         }
+        //     }
+        // }
+
+        //jQuery实现方式
+        function selectAll(flag){
+            $("input[name='cb[]']").each(function(){ //如果不是复数的元素不需要加单引号
+                if(flag != undefined || $(this).is(":checked")){
+                    $(this).prop("checked", false); //貌似1.6之前版本是attr("checked", true)，1.9+好像不能attr了，所以要规范写法
+                }else{
+                    $(this).prop("checked", true);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="hehe"></div>
+</body>
+</html>

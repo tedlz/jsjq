@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>点击添加或删除文本框</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		/**
+		 * 自己可以封装的通用点
+		 * 比如要生成的元素除了文本框，还可以是其它的
+		 */
+		$(document).ready(function(){
+			effect(); //页面载入后执行生成按钮并绑定事件操作
+		});
+		//固定格式的按钮
+		function btn(){
+			//添加span是为了删除空格，nextAll()方法只能选择元素
+			return '<span>&nbsp;&nbsp;</span><input type="button" value="添加" /><span>&nbsp;</span><input type="button" value="删除" />';
+		}
+		//生成按钮且把按钮绑定onclick事件
+		function effect(){
+			$("input[type=text]:last").after(btn());
+			$("input[type=text]:last").nextAll("input:first").click(function(){addElement()});
+			$("input[type=text]:last").nextAll("input:last").click(function(){delElement()});
+		}
+		//添加对话框
+		function addElement(){
+			//仅赋值
+			var val = $("input[type=text]:last").val();
+			var arr = val.split("-");
+			val = arr[0] + "-" + (arr[1]-0+1); //减0为js快速转换数据类型方式
+			//添加对话框代码
+			$("input[type=text]:last").nextAll().remove().end().after('<br/><input type="text" value="' + val + '">');
+			effect();
+		}
+		//删除对话框
+		function delElement(){
+			//防止全部删除
+			if($("input[type=text]").length < 2){
+				alert("尼玛，再删就没了！");
+				return;
+			}
+			//删除对话框代码
+			//第一种写法
+			$("input[type=text]:last").nextAll().remove().end().remove(); //end()方法将回到$("input[type=text]:last")
+			//第二种写法
+			// $("input[type=text]:last").nextAll().remove();
+			// $("input[type=text]:last").remove();
+			effect();
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<input type="text" value="text-1" />
+	</div>
+</body>
+</html>

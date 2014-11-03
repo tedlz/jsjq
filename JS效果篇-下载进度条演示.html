@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>下载进度条演示</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		var stopFlag;
+		$(document).ready(function(){
+			init();
+		});
+
+		var index = 0;
+		function demo(){
+			if(index > 100){
+				window.clearInterval(stopFlag);
+				alert("下载完成！");
+			}else{
+				$("#txt").text(index);
+				$("#demo").width(index + "%");
+			}
+			index++;
+		}
+
+		//初始化
+		function init(){
+			$("#txt").text(0);
+			$("#demo").width("0%");
+		}
+
+		//开始下载
+		function startDownload(){
+			if(($("#txt").text() - 0) <= 100){
+				stopFlag = setInterval("demo()", 50);
+			}else{
+				alert("下载完成了哦亲~");
+			}
+		}
+
+		//暂停下载
+		function pauseDownload(){
+			if(index > 100){
+				alert("下载完了，你还暂停做什么？");
+				return;
+			}
+			if(index == 0){
+				alert("您还没开始下载，何来暂停？");
+			}
+			window.clearInterval(stopFlag);
+		}
+
+		//取消下载
+		function stopDownload(){
+			if(index > 0){
+				window.clearInterval(stopFlag);
+				index = 0;
+				init();
+			}else{
+				alert("您还没开始下载，怎么取消？");
+			}
+		}
+	</script>
+</head>
+<body>
+	<div style="margin:0 auto;text-align:center;width:500px;height:30px;border:1px solid #BBB;">
+		<span style="display:block;background-color:#BBB;width:100%;height:30px;" id="demo"></span>
+		<span style="position:absolute;margin-top:-24px;"><span id="txt">100</span>%</span>
+		<p>
+			<input type="button" value="开始下载" onclick="startDownload()" />
+			<input type="button" value="暂停下载" onclick="pauseDownload()" />
+			<input type="button" value="取消下载" onclick="stopDownload()" />
+		</p>
+	</div>
+</body>
+</html>

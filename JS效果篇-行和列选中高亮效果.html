@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>行和列选中高亮效果</title>
+	<style>
+		table{margin:0 auto;text-align:center;width:600px;}
+		table td{line-height:24px;border:1px solid #696969;}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//首先，生成一个N行N列的表格
+			var rows = 5; //行数
+			var cols = 5; //列数
+			//表格代码
+			var html = "<table>";
+			var arr = "一二三四五六七八九十";
+			for(var i = 0; i < rows; i++){
+				html += '<tr>';
+				for(var j = 0; j < cols; j++){
+					html += '<td>' + arr.charAt(i) + "行" + arr.charAt(j) + "列" + '</td>';
+				}
+				html += '</tr>';
+			}
+			html += "</table>";
+			//在页面上画表格，五种jQuery写法均可
+			$("div:first").html(html); // 1
+			// $("div:eq(0)").html(html); // 2
+			// $("div").eq(0).html(html); // 3
+			// $("div").first().html(html); // 4
+
+			//作用对象会变成多个div，前四个都是严谨的写法，指定单个div，最后一种慎用
+			// $("div").html(html); // 5
+
+			//附送两个javascript写法
+			//1、
+			// var ele = document.getElementsByTagName("div");
+			// ele[0].innerHTML = html;
+			//2、
+			// document.getElementsByTagName("div")[0].innerHTML = html;
+
+			//下面是行和列选中高亮效果的正式版代码
+			var trOriginalColor = ""; //行的原颜色，为了避免修改行原来的背景颜色
+			$("table tr").hover(
+				function(){
+					originalColor = $(this).css("background-color");
+					$(this).css({'background-color' : '#BBB'});
+				},
+				function(){
+					$(this).css({'background-color' : trOriginalColor});
+				}
+			);
+			var tdOriginalColor = ""; //列的原颜色，为了避免修改单元格原来的背景颜色
+			$("table td").hover(
+				function(){
+					originalColor = $(this).css("background-color");
+					$(this).css({
+						'background-color' : '#696969',
+						'color' : '#FFF'
+					});
+				},
+				function(){
+					$(this).css({
+						'background-color' : tdOriginalColor,
+						'color' : '#000'
+					});
+				}
+			);
+		});
+	</script>
+</head>
+<body>
+	<div style="margin:0 auto;text-align:center;"></div>
+</body>
+</html>

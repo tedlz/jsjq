@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+	div{font-size:36px;font-weight:bold;}
+	span{cursor:pointer;}
+</style>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>五星评分效果</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		//配置
+		var empty_star = '☆';
+		var full_star = '★';
+		var count = 5;
+		$(document).ready(function(){
+			//初始化
+			var content = '';
+			for(var i = 0; i < count; i++){
+				content += '<span>' + empty_star + '</span>';
+			}
+			$("div").html(content);
+
+			var _object = $("span");
+
+			//绑定事件
+			_object.hover(
+				function(){
+					_object.mouseleave(function(){
+						objLeave();
+					});
+					overAndClick($(this));
+				},
+				function(){
+					objLeave();
+				}
+			);
+			_object.click(function(){
+				overAndClick();
+				_object.unbind('mouseleave');
+			});
+
+			//通用方法
+			function overAndClick(element){
+				//JS快速转换数值类型，直接：值减0
+				_object.slice(0, _object.index(element) - 0 + 1).html(full_star);
+			}
+
+			function objLeave(){
+				_object.html(empty_star);
+			}
+		});
+	</script>
+</head>
+<body>
+	<center>
+		<div></div>
+	</center>
+</body>
+</html>

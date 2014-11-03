@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>点击临时记录操作</title>
+    <style>
+        table td{border:1px solid #444;width:150px;}
+        span,label{cursor:pointer;}
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var rows = 5;
+            var cols = 5;
+            var allow = ['no', 'yes'];
+            var element = ['span', 'label'];
+            var table = "<table>";
+            for(var i = 0; i < rows; i++){
+                table += "<tr>";
+                for(var j = 0; j < cols; j++){
+                    //随机数
+                    var e = Math.round(Math.random() * 1);
+                    var a = Math.round(Math.random() * 1);
+                    table += '<td><' + element[e] + ' class="' + allow[a] + '">' + element[e] + '-' + allow[a] + '</' + element[e] + '></td>';
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+            $("div").html(table);
+
+            //class=no的全部无效果
+            $(".yes").click(function(){
+                $(this).css({
+                    'background-color' : '#9ACD32',
+                    'color' : 'white'
+                });
+            });
+
+            //只要是span，不管是yes还是no，都无效
+            // $("table td").find("*").not("span").click(function(){
+            //     $(this).css({
+            //         'background-color' : '#9ACD32',
+            //         'color' : 'white'
+            //     });
+            // });
+        });
+    </script>
+</head>
+<body>
+    <div style="margin:0 auto;text-align:center;width:800px;"></div>
+</body>
+</html>
