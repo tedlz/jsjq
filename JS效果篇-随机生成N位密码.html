@@ -1,49 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>随机生成N位密码</title>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript">
-		//随机生成6位由26个字母（大小写）、数字组成的密码
-		function randompwd(len){
-			var length = $("#len").val();
-			if(length > 0){
-				len = length;
-			}else if(isNaN(len)){
-				len = 6;
-			}
-			alert(len);
-			var result;
-			var index = 0; //生成计数
-			while(true){
-				result = '';
-				for(var i = 0; i < len; i++){
-					var random = Math.floor(Math.random() * 122) + 1; //随机生成键盘码
-					//不包含大小写字母O、o和数字0，包含26个英文字母大小写及数字
-					if(random == 79 || random == 111 || random < 49 || (random > 57 && random < 65) || (random > 90 && random < 97)){
-						i -= 1;
-						continue;
-					}
-			 		result += String.fromCharCode(random); //转换键盘码为键盘某按键
-				}
-				index++;
-				//如果生成的结果不包含A-Za-z0-9则继续，都包含则执行完毕
-				if(/[a-z]/.test(result) && /[A-Z]/.test(result) && /[0-9]/.test(result)){
-					break;
-				}
-			}
-			$("#password").val(result);
-		}
-	</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>随机生成N位密码</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        //随机生成6位由26个字母（大小写）、数字组成的密码
+        function randompwd(len){
+            var length = $("#len").val();
+            if(length > 0){
+                len = length;
+            }else if(isNaN(len)){
+                len = 6;
+            }
+            alert(len);
+            var result;
+            var index = 0; //生成计数
+            while(true){
+                result = '';
+                for(var i = 0; i < len; i++){
+                    var random = Math.floor(Math.random() * 122) + 1; //随机生成键盘码
+                    //不包含大小写字母O、o和数字0，包含26个英文字母大小写及数字
+                    if(random == 79 || random == 111 || random < 49 || (random > 57 && random < 65) || (random > 90 && random < 97)){
+                        i -= 1;
+                        continue;
+                    }
+                    result += String.fromCharCode(random); //转换键盘码为键盘某按键
+                }
+                index++;
+                //如果生成的结果不包含A-Za-z0-9则继续，都包含则执行完毕
+                if(/[a-z]/.test(result) && /[A-Z]/.test(result) && /[0-9]/.test(result)){
+                    break;
+                }
+            }
+            $("#password").val(result);
+        }
+    </script>
 </head>
 <body>
-	<div style="margin:0 auto;text-align:center;">
-		<p>位数：<input type="text" id="len" /></p>
-		<p>结果：<input type="text" id="password" /></p>
-		<p>
-			<input type="button" value="生成密码" onclick="randompwd(4)" />
-		</p>
-	</div>
+    <div style="margin:0 auto;text-align:center;">
+        <p>位数：<input type="text" id="len" /></p>
+        <p>结果：<input type="text" id="password" /></p>
+        <p>
+            <input type="button" value="生成密码" onclick="randompwd(4)" />
+        </p>
+    </div>
 </body>
 </html>
