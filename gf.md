@@ -1,18 +1,19 @@
+
 ## PHP 编码规范：  
 
 ---
 
-1、 UTF-8 without BOM -- 文件应该使用 Unicode（UTF-8）编码保存，且不包含字节序标记（BOM）[[Why?]](https://www.zhihu.com/question/20167122)；  
+1、 **UTF-8 without BOM** -- 文件应该使用 Unicode（UTF-8）编码保存，且不包含字节序标记（BOM）[[Why?]](https://www.zhihu.com/question/20167122)；  
   
-2、 Spaces for indentation -- 缩进请使用 4 个空格，禁止使用 tab [[Why?]](http://ooxx.me/tabs-vs-spaces.orz)；  
+2、 **Spaces for indentation** -- 缩进请使用 4 个空格，禁止使用 tab [[Why?]](http://ooxx.me/tabs-vs-spaces.orz)；  
   
-3、 LF Line Ending -- 换行要使用 Unix 换行符（为了~~联盟~~在 Windows、Linux、OS X 三大平台中更好的兼容，现在 Linux、OS X 已统一为 Unix 换行符，这么做主要是为了 Windows）；
+3、 **LF Line Ending** -- 换行要使用 Unix 换行符（为了~~联盟~~在 Windows、Linux、OS X 三大平台中更好的兼容，现在 Linux、OS X 已统一为 Unix 换行符，这么做主要是为了 Windows）；
 
 `以上 3 条为开发中的重要原则`
 
 ---  
 
-4、 代码标记请使用 `<?php ?>`，禁止使用短标签，保持最好的兼容；  
+4、 代码块标记请使用 `<?php ?>`，禁止使用短标签，保持最好的兼容；PHP 文件只需带开始标记 `<?php` ，禁止带结束标记 `?>`；[[Why?]](https://www.zhihu.com/question/20989781)
 
 5、 注释要简洁明了、能描述清楚业务逻辑为佳，禁止无意义的注释：  
 
@@ -42,7 +43,7 @@ update_child_by_id
   
 8、 请通过合理命名让你的 [类名]、[方法名] 和 [变量名] 更有意义；  
   
-9、 提交代码前，请进行格式化操作，格式化推荐工具：[[phpfmt]](https://github.com/phpfmt/fmt)，也可以使用 phpfmt 的插件，支持如下编辑器 / IDE：
+9、 提交代码前，请进行格式化操作，格式化推荐工具：[phpfmt](https://github.com/phpfmt/fmt)，也可以使用 phpfmt 的插件，支持如下编辑器 / IDE：
     
   - Sublime Text 3
   - Vim
@@ -202,7 +203,7 @@ update_child_by_id
 
 8. 需要 echo 数据时，使用 echo a, b, c 效率比 echo a; echo b; echo c; 和 echo a . b . c 性能更高
 
-9. 定义或输出大量字符串或HTML时，可以使用 PHP 的 heredoc
+9. 定义或输出大量字符串或 HTML 时，可以使用 PHP 的 heredoc
    参考：http://php.net/manual/zh/language.types.string.php#language.types.string.syntax.heredoc
 
 10.PHP 的时区系统会导致 strtotime 等不可预料的问题，推荐在 php.ini 文件里把 timezone 设置为 PRC
@@ -210,4 +211,4 @@ update_child_by_id
 11.待补……
 ```
 
-by ted
+by tedlz
