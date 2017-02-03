@@ -42,7 +42,7 @@ update_child_by_id
 
 _private_method
 ```
-    
+  
 8、 请通过合理命名让你的 [类名]、[方法名] 和 [变量名] 更有意义；  
   
 9、 提交代码前，请进行格式化操作，格式化推荐工具：[phpfmt](https://github.com/phpfmt/fmt)，也可以使用 phpfmt 的插件，支持如下编辑器 / IDE：
