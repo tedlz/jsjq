@@ -34,13 +34,14 @@ AdminController.php
 OpenAdminController.php  
 ```
   
-7、 [方法名] 和 [变量名] 禁止使用骆驼命名法，务必使用下划线分割单词，例如：  
+7、 [方法名] 和 [变量名] 禁止使用骆驼命名法，务必使用下划线分割单词，私有方法要在方法名前加下划线，例如：  
   
 ```        
 get_member  
 update_child_by_id  
+
+_private_method
 ```
-    私有方法请在方法名前加下划线
     
 8、 请通过合理命名让你的 [类名]、[方法名] 和 [变量名] 更有意义；  
   
