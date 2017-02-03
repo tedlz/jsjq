@@ -40,7 +40,8 @@ OpenAdminController.php
 get_member  
 update_child_by_id  
 ```
-  
+    私有方法请在方法名前加下划线
+    
 8、 请通过合理命名让你的 [类名]、[方法名] 和 [变量名] 更有意义；  
   
 9、 提交代码前，请进行格式化操作，格式化推荐工具：[phpfmt](https://github.com/phpfmt/fmt)，也可以使用 phpfmt 的插件，支持如下编辑器 / IDE：
@@ -110,7 +111,7 @@ update_child_by_id
         'a' => '1',
         'b' => 2,
     ];
-    foreach ($array as &v) {
+    foreach ($array as &$v) {
         $v['a'] -= 0; //已经转换为 int
         $v['c'] = 3; //添加新字段到数组中
     }
